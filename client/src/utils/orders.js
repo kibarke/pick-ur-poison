@@ -6,7 +6,8 @@ export const ORDER_COCKTAIL = gql`
       _id
       cocktailTitle
       cocktailIngredients
-      doubleShot // what could this be?? 2x shot???
+      doubleShot 
+      price
     }
   }
 `;
@@ -17,7 +18,7 @@ export const ORDER_MOCKTAIL = gql`
       _id
       mocktailTitle
       mocktailIngredients
-      createdAt // what could this be?? like a
+      price
     }
   }
 `;
