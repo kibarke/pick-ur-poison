@@ -1,0 +1,27 @@
+[
+    {
+        "mocktailName": "Virgin Mojito",
+        "mocktailIngredients": "Fresh lime juice, lime wedges, sugar syrup, mint leaves, soda water",
+        "mocktailPrice": "$5"
+    },
+    {
+        "mocktailName": "Virgin Bloody Mary",
+        "mocktailIngredients": "Tomato juice, Worcester sauce, Tabasco sauce, celery salt, pepper, fresh lime juice",
+        "mocktailPrice": "$8"
+    },
+    {
+        "mocktailName": "Shirley Temple",
+        "mocktailIngredients": "Grenadine, ginger ale",
+        "mocktailPrice": "$5"
+    },
+    {
+        "mocktailName": "Virgin Piña Colada",
+        "mocktailIngredients": "Coconut milk, fresh lime juice, pineapple juice, coconut cream, ice",
+        "mocktailPrice": "$8"
+    },
+    {
+        "mocktailName": "Abstinence On The Beach",
+        "mocktailIngredients": "Peach purée, cranberry juice, orange juice",
+        "mocktailPrice": "$8"
+    }
+]
