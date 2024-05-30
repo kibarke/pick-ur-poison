@@ -1,33 +1,49 @@
-// Stole this code from stackOverflow
+const { Schema, model } = require('mongoose');
+const bcrypt = require('bcrypt');
 
-// grab the things we need
-  var mongoose = require('mongoose');
-  var Schema = mongoose.Schema;
+const userSchema = new Schema({
+  username: {
+    type: String,
+    required: true,
+    unique: true,
+    trim: true,
+  },
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+    match: [/.+@.+\..+/, 'Must match an email address!'],
+  },
+  password: {
+    type: String,
+    required: true,
+    minlength: 5,
+  },
+  dateofbirth: {
+    type: String,
+    required: true
+  },
+  cart: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Cart',
+    }
+  ]
+});
 
-  // create a schema
-  var userSchema = new Schema({
-  name: String,
-  username: { type: String, required: true, unique: true },
-  password: { type: String, required: true },
-  });
+userSchema.pre('save', async function (next) {
+  if (this.isNew || this.isModified('password')) {
+    const saltRounds = 10;
+    this.password = await bcrypt.hash(this.password, saltRounds);
+  }
 
-  // the schema is useless so far
-  // we need to create a model using it
-  var User = mongoose.model('User', userSchema);
+  next();
+});
 
-  // make this available to our users in our Node applications
-  module.exports = User;
+userSchema.methods.isCorrectPassword = async function (password) {
+  return bcrypt.compare(password, this.password);
+};
 
-//   controller =>
-    // router.post('/signup',function(req,res){
-    //     console.log("Inside")
-    //     var useR= new User({
-    //      name: 'Chris',
-    //      username: 'sevilayha',
-    //      password: 'password' 
-    //     });
-    //     useR.save(function(err) {
-    //      if (err) throw err;
-    //      console.log('User saved successfully!');
-    //     });
-    //    });
+const User = model('User', userSchema);
+
+module.exports = User;
