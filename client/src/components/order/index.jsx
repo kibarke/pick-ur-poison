@@ -4,15 +4,14 @@
 import { useState } from 'react';
 import { useMutation } from '@apollo/client';
 
-import { ADD_ORDER } from '../../utils/mutations';
-import { QUERY_THOUGHTS } from '../../utils/queries'; // ? What should be there?
+import { ADD_ORDER } from '../../utils/orders';
 
-const ThoughtForm = () => {
+const orderForm = () => {
   const [formState, setFormState] = useState({
-    thoughtText: '',
-    thoughtAuthor: '',
+    orderCockTail: '',
+    orderMockTail: '',
   });
-  const [characterCount, setCharacterCount] = useState(0); // I don't think that this is needed cuz we're ordering something rather than writing
+  const [orderDrinks, {error}] = useState(0); // I don't think that this is needed cuz we're ordering something rather than writing
 
   const [addThought, { error }] = useMutation(ADD_ORDER, {
     refetchQueries: [
@@ -100,4 +99,4 @@ const ThoughtForm = () => {
   );
 };
 
-export default ThoughtForm;
+export default orderForm;
