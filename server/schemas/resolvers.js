@@ -59,12 +59,12 @@ const resolvers = {
   Query: {
     classes: async () => {
       // return await Class.find({});
-      const demo = {
+      const demo = [{
         _id: 123,
-        commentText: "Hello",
-        createdAt: "NOW!"
-      }
-      
+        name: "Test",
+        building: "building",
+        creditHours: 1
+      }]
       return demo
     }
   }
