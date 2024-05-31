@@ -2,26 +2,26 @@
     {
         "cocktailName": "Margarita",
         "cocktailIngredients": "Tequila, Lime Juice, Salt on glass rim",
-        "cocktailPrice": "$5"
+        "cocktailPrice": 5
     },
     {
         "cocktailName": "Cosmopolitan",
         "cocktailIngredients": "Citron vodka, Lime Juice, Cranberry Juice, Cointreau",
-        "cocktailPrice": "$10"
+        "cocktailPrice": 10
     },
     {
         "cocktailName": "Mojito",
         "cocktailIngredients": "White Rum, Sugar Syrup, Soda Water, Lime, Mint",
-        "cocktailPrice": "$9"
+        "cocktailPrice": 9
     },
     {
         "cocktailName": "Bloody Mary",
         "cocktailIngredients": "Vodka, Tomato Juice, Lemon Juice, Salt, Pepper, Worcestershire Sauce, Tabasco",
-        "cocktailPrice": "$10"
+        "cocktailPrice": 10
     },
     {
         "cocktailName": "Long Island Ice Tea",
         "cocktailIngredients": "Silver Tequila, Vodka, White Rum, Triple sec, Gin, Lemon Juice, Curacao Syrus, Cold Cola",
-        "cocktailPrice": "$10"
+        "cocktailPrice": 10
     }
 ]
