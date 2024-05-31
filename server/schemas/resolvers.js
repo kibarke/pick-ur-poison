@@ -44,10 +44,38 @@ const resolvers = {
       
             return { token, user };
           },
-        addCart: async (parent, {Mocktail, Cocktail}) => {
+        createCart: async (parent, {Mocktail, Cocktail}) => {
             const cart = await Cart.create({Mocktail, Cocktail});
             return { cart };
-        }  
+        },
+        addtoCart: async (parent, { cartId, Mocktail, Cocktail }, context) => {
+          // If context has a `user` property, that means the user executing this mutation has a valid JWT and is logged in
+          if (context.user) {
+            return Cart.findOneAndUpdate(
+              { _id: cartId },
+              {
+                $addToSet: { Mocktails: Mocktail, Cocktails: Cocktail },
+              },
+              {
+                new: true,
+                runValidators: true,
+              }
+            );
+          }
+          // If user attempts to execute this mutation and isn't logged in, throw an error
+          throw AuthenticationError;
+        },
+            // Make it so a logged in user can only remove a skill from their own profile
+        removefromCart: async (parent, { Mocktail, Cocktail }, context) => {
+          if (context.user) {
+            return Cart.findOneAndUpdate(
+              { _id: context.user._id },
+              { $pull: { Mocktails: Mocktail, Cocktails: Cocktail } },
+              { new: true }
+          );
+        }
+        throw AuthenticationError;
+        },        
     }
 }
 
