@@ -17,6 +17,7 @@ const cocktailSchema = new Schema({
     cocktailPrice: {
         type: Number,
         required: true,
+        min: 0.99
     },
 });
 
