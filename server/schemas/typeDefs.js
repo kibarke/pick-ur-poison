@@ -12,18 +12,17 @@ const typeDefs = `
     _id: ID
     mocktailName: String
     mocktailIngredients: String
-    moctailPrice: Float
+    mocktailPrice: Float
   }
 
   type Cocktail {
     _id: ID
     cocktailName: String
     cocktailIngredients: String
-    coctailPrice: Float
+    cocktailPrice: Float
   }
 
   type Cart {
-    user: [User]
     mocktail: [Mocktail]
     cocktail: [Cocktail]
   }
@@ -35,7 +34,7 @@ const typeDefs = `
 
   type Query {
     users: [User]
-    user(username: String!): User
+    user: User
     mocktails: [Mocktail]
     mocktail(_id: ID!): Mocktail
     cocktails: [Cocktail]

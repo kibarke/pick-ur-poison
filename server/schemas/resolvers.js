@@ -7,8 +7,8 @@ const resolvers = {
         users: async () => {
           return User.find().populate('cart');
           },
-        user: async (parent, { username }) => {
-          return User.findOne({ username }).populate('cart');
+        user: async (parent, {}, context) => {
+          return User.findOne({ _id: context.user._id}).populate('cart');
          },
         mocktails: async () => {
           return Mocktail.find();
