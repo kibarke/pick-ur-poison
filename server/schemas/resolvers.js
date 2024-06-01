@@ -5,20 +5,24 @@ const { signToken, AuthenticationError } = require('../utils/auth');
 const resolvers = {
     Query: {
         users: async () => {
-            return User.find().populate('cart');
+          return User.find().populate('cart');
           },
-        //   user: async (parent, { username }) => {
-        //     return User.findOne({ username }).populate('cart');
-        //   },
-        //   me: async (parent, args, context) => {
-        //     if (context.user) {
-        //       return User.findOne({ _id: context.user._id }).populate('cart');
-        //     }
-        //     throw AuthenticationError;
-        //   },
-        // cart: async (parent, args, context) => {
-        //     return Cart.findOne({_id: context.user._id}).populate('mocktails', 'cocktails')
-        // }
+        user: async (parent, { username }) => {
+          return User.findOne({ username }).populate('cart');
+         },
+        mocktails: async () => {
+          return Mocktail.find();
+        },
+        mocktail: async (parent, { _id }) => {
+          return await Mocktail.findById(_id);
+        },
+        cocktails: async () => {
+          return Cocktail.find();
+        },
+        cocktail: async (parent, { _id }) => {
+          return await Cocktail.findById(_id);
+        },
+
     },
 
     Mutation: {
@@ -44,10 +48,7 @@ const resolvers = {
       
             return { token, user };
           },
-        // addCart: async (parent, {Mocktail, Cocktail}) => {
-        //     const cart = await Cart.create({Mocktail, Cocktail});
-        //     return { cart };
-        // }  
+ 
     }
 }
 

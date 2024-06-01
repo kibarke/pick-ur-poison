@@ -17,6 +17,7 @@ const mocktailSchema = new Schema({
     mocktailPrice: {
         type: Number,
         required: true,
+        min: 0.99
     },
 });
 
