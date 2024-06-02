@@ -37,5 +37,8 @@ Uses a web manifest.
 Uses a service worker for offline functionality.
 Is installable.
 ```
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 163f87ae407de463c3ba295570f0246f02820fe5
