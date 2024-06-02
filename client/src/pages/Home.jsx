@@ -1,6 +1,6 @@
 import { useQuery } from '@apollo/client';
 
-import OrderList from '../components/order';
+import DrinkList from '../components/DrinkList';
 import OrderForm from '../components/menu'; 
 
 import { QUERY_USER } from '../utils/queries';
@@ -24,10 +24,13 @@ const Home = () => {
           {loading ? (
             <div>Loading...</div>
           ) : (
-            <OrderList 
-                orders={orders}
-                title="Pick Your Poison..."
-            />
+            <>
+            <DrinkList type= "cocktails" />
+            
+            <DrinkList type= "mocktails" />
+
+            </>
+
           )}
         </div>
       </div>

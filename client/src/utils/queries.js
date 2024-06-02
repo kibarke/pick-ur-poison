@@ -18,12 +18,12 @@ query User {
       dateofbirth
       cart {
         mocktail {
-          mocktailName
-          mocktailPrice
+          name
+          price
         }
         cocktail {
-          cocktailName
-          cocktailPrice
+          name
+          price
         }
       }
     }
@@ -35,9 +35,9 @@ export const QUERY_ALL_MOCKTAILS = gql`
 query getMocktails {
     mocktails {
       _id
-      mocktailIngredients
-      mocktailName
-      mocktailPrice
+      ingredients
+      name
+      price
     }
   }
 `
@@ -46,9 +46,9 @@ export const QUERY_MOCKTAIL = gql`
 query Mocktail($id: ID!) {
     mocktail(_id: $id) {
       _id
-      mocktailName
-      mocktailIngredients
-      mocktailPrice
+      name
+      ingredients
+      price
     }
   }
 `
@@ -57,9 +57,9 @@ export const QUERY_ALL_COCKTAILS = gql`
 query getCocktails {
     cocktails {
       _id
-      cocktailName
-      cocktailIngredients
-      cocktailPrice
+      name
+      ingredients
+      price
     }
   }
 `
@@ -67,9 +67,9 @@ export const QUERY_COCKTAIL = gql`
 query Cocktail($id: ID!) {
     cocktail(_id: $id) {
       _id
-      cocktailName
-      cocktailIngredients
-      cocktailPrice
+      name
+      ingredients
+      price
     }
   }
 `

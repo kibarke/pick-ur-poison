@@ -1,20 +1,20 @@
 const { Schema, model } = require('mongoose');
 
 const cocktailSchema = new Schema({
-    cocktailName: {
+    name: {
         type: String,
         required: true,
         minlength: 1,
         maxlength: 280,
         trim: true,
     },
-    cocktailIngredients: {
+    ingredients: {
         type: String,
         required: true,
         minlength: 1,
         maxlength: 280,
     },
-    cocktailPrice: {
+    price: {
         type: Number,
         required: true,
         min: 0.99
