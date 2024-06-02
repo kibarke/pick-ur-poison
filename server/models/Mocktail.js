@@ -1,20 +1,20 @@
 const { Schema, model } = require('mongoose');
 
 const mocktailSchema = new Schema({
-    mocktailName: {
+    name: {
         type: String,
         required: true,
         minlength: 1,
         maxlength: 280,
         trim: true,
     },
-    mocktailIngredients: {
+    ingredients: {
         type: String,
         required: true,
         minlength: 1,
         maxlength: 280,
     },
-    mocktailPrice: {
+    price: {
         type: Number,
         required: true,
         min: 0.99

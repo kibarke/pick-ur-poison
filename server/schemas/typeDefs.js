@@ -10,16 +10,16 @@ const typeDefs = `
 
   type Mocktail {
     _id: ID
-    mocktailName: String
-    mocktailIngredients: String
-    mocktailPrice: Float
+    name: String
+    ingredients: String
+    price: Float
   }
 
   type Cocktail {
     _id: ID
-    cocktailName: String
-    cocktailIngredients: String
-    cocktailPrice: Float
+    name: String
+    ingredients: String
+    price: Float
   }
 
   type Cart {

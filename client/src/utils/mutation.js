@@ -28,13 +28,13 @@ mutation Mutation($mocktail: ID!, $cocktail: ID!) {
   createCart(mocktail: $mocktail, cocktail: $cocktail) {
     mocktail {
       _id
-      mocktailName
-      mocktailPrice
+      name
+      price
     }
     cocktail {
       _id
-      cocktailName
-      cocktailPrice
+      name
+      price
     }
   }
 }
@@ -43,7 +43,7 @@ export const REMOVE_MOCKTAIL = gql`
 mutation Mutation($cartId: ID!, $mocktailId: ID!) {
   removeMocktail(cartId: $cartId, mocktailId: $mocktailId) {
     _id
-    mocktailName
+    name
   }
 }
 `
@@ -51,7 +51,7 @@ export const REMOVE_COCKTAIL = gql`
 mutation Mutation($cartId: ID!, $cocktailId: ID!) {
   removeCocktail(cartId: $cartId, cocktailId: $cocktailId) {
     _id
-    cocktailName
+    name
   }
 }
 `

@@ -4,7 +4,7 @@
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 
-import Order from '../components/order';
+import Order from '../components/OrderList';
 import User from '../components/user'; // ? When we want user, do we want a history of their order??
 
 import { ORDER_SINGLE_ITEM } from '../utils/queries';

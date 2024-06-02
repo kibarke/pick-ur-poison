@@ -1,3 +1,4 @@
+import "./style.css"
 import {
   Disclosure,
   DisclosureButton,
@@ -21,7 +22,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function Example() {
+export default function Navbar() {
   return (
     <Disclosure as="nav" className="bg-gray-800">
       {({ open }) => (
