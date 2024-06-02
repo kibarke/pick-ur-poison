@@ -3,10 +3,10 @@ import { useQuery } from '@apollo/client';
 import OrderList from '../components/order';
 import OrderForm from '../components/menu'; 
 
-import { CUSTOMER_ORDERS } from '../utils/orders';
+import { QUERY_USER } from '../utils/queries';
 
 const Home = () => {
-  const { loading, data } = useQuery(CUSTOMER_ORDERS);
+  const { loading, data } = useQuery(QUERY_USER);
   const orders = data?.orders || [];
 
 

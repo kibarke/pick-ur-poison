@@ -1,7 +1,6 @@
 import './App.css';
 import { Outlet } from 'react-router-dom';
 import Navbar from './components/Navbar'
-import Dashboard from './pages/Dashboard'
 import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
 
 const client = new ApolloClient({
@@ -14,7 +13,6 @@ function App() {
     <ApolloProvider client={client}>
       <div className="flex-column justify-center align-center min-100-vh bg-primary">
       <Navbar></Navbar>
-      <Dashboard></Dashboard>
         <Outlet />
       </div>
     </ApolloProvider>

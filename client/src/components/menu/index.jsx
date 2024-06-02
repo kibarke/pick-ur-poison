@@ -6,9 +6,9 @@ const Header = () => {
   return (
     <header className="bg-primary text-light mb-4 py-3 flex-row align-center">
       <div className="container flex-row justify-space-between-lg justify-center align-center">
-        <Link className="text-light" to="/">
+        {/* <Link className="text-light" to="/"> */}
           <h1 className="m-0">Pick Your Poison</h1>
-        </Link>
+        {/* </Link> */}
         <p className="m-0">The toxic relationship you need!</p> 
         {/* IDK what to put there, just a brand motto */}
       </div>
