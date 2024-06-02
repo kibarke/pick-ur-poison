@@ -13,8 +13,9 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <div className="flex-column justify-center align-center min-100-vh bg-primary">
-      <Navbar></Navbar>
-      <Dashboard></Dashboard>
+      {/* <Navbar></Navbar>
+      <Dashboard></Dashboard> */}
+      <Menu />
         <Outlet />
       </div>
     </ApolloProvider>

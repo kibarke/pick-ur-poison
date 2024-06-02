@@ -39,6 +39,3 @@ Is installable.
 ```
 
 
-ylklzV1FQ12HTvNt
-
-mongodb+srv://kibarkework:ylklzV1FQ12HTvNt@cluster0.3vtav3h.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
