@@ -57,57 +57,57 @@ const resolvers = {
             return { token, user };
           },
  
-    },
-    createCart: async (parent, { Mocktail, Cocktail }, context) => {
-      console.log(context);
-      if (context.user) {
-        const cart = await Cart.create({
-          Mocktail,
-          Cocktail
-        });
+        createCart: async (parent, { Mocktail, Cocktail }, context) => {
+          if (context.user) {
+            const cart = await Cart.create({
+              Mocktail,
+              Cocktail
+            });
 
-        await User.findOneAndUpdate(
+          await User.findOneAndUpdate(
           { _id: context.user._id },
           { $addToSet: { cart: cart._id } }
-        );
+          );
 
-        return cart;
+          return cart;
+        }
+        throw AuthenticationError;
+        ('You need to be logged in!');
+      },
+
+    removeMocktail: async (parent, { cartId, mocktailId }, context) => {
+      if (context.user) {
+        return Cart.findOneAndUpdate(
+          { _id: cartId },
+          {
+            $pull: {
+              mocktails: {
+                _id: mocktailId,
+              },
+            },
+          },
+          { new: true }
+        );
       }
       throw AuthenticationError;
-      ('You need to be logged in!');
     },
-    // removeMocktail: async (parent, { cartId, mocktailId }, context) => {
-    //   if (context.user) {
-    //     return Cart.findOneAndUpdate(
-    //       { _id: cartId },
-    //       {
-    //         $pull: {
-    //           mocktails: {
-    //             _id: mocktailId,
-    //           },
-    //         },
-    //       },
-    //       { new: true }
-    //     );
-    //   }
-    //   throw AuthenticationError;
-    // },
-    // removeCocktail: async (parent, { cartId, cocktailId }, context) => {
-    //   if (context.user) {
-    //     return Cart.findOneAndUpdate(
-    //       { _id: cartId },
-    //       {
-    //         $pull: {
-    //           cocktails: {
-    //             _id: cocktailId,
-    //           },
-    //         },
-    //       },
-    //       { new: true }
-    //     );
-    //   }
-    //   throw AuthenticationError;
-    // },
+    removeCocktail: async (parent, { cartId, cocktailId }, context) => {
+      if (context.user) {
+        return Cart.findOneAndUpdate(
+          { _id: cartId },
+          {
+            $pull: {
+              cocktails: {
+                _id: cocktailId,
+              },
+            },
+          },
+          { new: true }
+        );
+      }
+      throw AuthenticationError;
+    },
+  }, 
 }
 
 module.exports = resolvers;

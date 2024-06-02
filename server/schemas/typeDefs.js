@@ -46,6 +46,8 @@ const typeDefs = `
     addUser(username: String!, email: String!, password: String!, dateofbirth: String!): Auth
     login(email: String!, password: String!): Auth
     createCart(mocktail: ID!, cocktail: ID!): Cart
+    removeMocktail(cartId: ID!, mocktailId: ID!): Mocktail
+    removeCocktail(cartId: ID!, cocktailId: ID!): Cocktail
   }
 
 `;
