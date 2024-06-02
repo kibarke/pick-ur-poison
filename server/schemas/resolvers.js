@@ -7,8 +7,8 @@ const resolvers = {
         users: async () => {
           return User.find().populate('cart');
           },
-        user: async (parent, { username }) => {
-          return User.findOne({ username }).populate('cart');
+        user: async (parent, {}, context) => {
+          return User.findOne({ _id: context.user._id}).populate('cart');
          },
         mocktails: async () => {
           return Mocktail.find();
@@ -22,7 +22,15 @@ const resolvers = {
         cocktail: async (parent, { _id }) => {
           return await Cocktail.findById(_id);
         },
-
+        cart: async (parent, { id }, context) => {
+          if (context.user) {
+            const user = await User.findById({_id: context.user._id}).populate('cart');
+  
+            return user.cart.id(id);
+          }
+    
+          throw AuthenticationError;
+        },
     },
 
     Mutation: {
@@ -49,7 +57,57 @@ const resolvers = {
             return { token, user };
           },
  
-    }
+        createCart: async (parent, { Mocktail, Cocktail }, context) => {
+          if (context.user) {
+            const cart = await Cart.create({
+              Mocktail,
+              Cocktail
+            });
+
+          await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $addToSet: { cart: cart._id } }
+          );
+
+          return cart;
+        }
+        throw AuthenticationError;
+        ('You need to be logged in!');
+      },
+
+    removeMocktail: async (parent, { cartId, mocktailId }, context) => {
+      if (context.user) {
+        return Cart.findOneAndUpdate(
+          { _id: cartId },
+          {
+            $pull: {
+              mocktails: {
+                _id: mocktailId,
+              },
+            },
+          },
+          { new: true }
+        );
+      }
+      throw AuthenticationError;
+    },
+    removeCocktail: async (parent, { cartId, cocktailId }, context) => {
+      if (context.user) {
+        return Cart.findOneAndUpdate(
+          { _id: cartId },
+          {
+            $pull: {
+              cocktails: {
+                _id: cocktailId,
+              },
+            },
+          },
+          { new: true }
+        );
+      }
+      throw AuthenticationError;
+    },
+  }, 
 }
 
 module.exports = resolvers;

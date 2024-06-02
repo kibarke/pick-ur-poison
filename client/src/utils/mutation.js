@@ -23,3 +23,35 @@ mutation AddUser($email: String!, $dateofbirth: String!, $username: String!, $pa
 }
 `;
 
+export const ADD_CART = gql`
+mutation Mutation($mocktail: ID!, $cocktail: ID!) {
+  createCart(mocktail: $mocktail, cocktail: $cocktail) {
+    mocktail {
+      _id
+      mocktailName
+      mocktailPrice
+    }
+    cocktail {
+      _id
+      cocktailName
+      cocktailPrice
+    }
+  }
+}
+`
+export const REMOVE_MOCKTAIL = gql`
+mutation Mutation($cartId: ID!, $mocktailId: ID!) {
+  removeMocktail(cartId: $cartId, mocktailId: $mocktailId) {
+    _id
+    mocktailName
+  }
+}
+`
+export const REMOVE_COCKTAIL = gql`
+mutation Mutation($cartId: ID!, $cocktailId: ID!) {
+  removeCocktail(cartId: $cartId, cocktailId: $cocktailId) {
+    _id
+    cocktailName
+  }
+}
+`
