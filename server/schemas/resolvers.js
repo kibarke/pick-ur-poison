@@ -1,8 +1,6 @@
 const { Query } = require('mongoose');
 const { User, Cocktail, Mocktail, Cart } = require('../models');
 const { signToken, AuthenticationError } = require('../utils/auth');
-const stripe = require('stripe')('');
-
 
 const resolvers = {
     Query: {
@@ -24,27 +22,15 @@ const resolvers = {
         cocktail: async (parent, { _id }) => {
           return await Cocktail.findById(_id);
         },
-        checkout: async (parent, args, context) => {
-          const url = new URL(context.headers.referer).origin;
-          // eslint-disable-next-line camelcase
-          const line_items = {
-            price_data: {
-              currency: 'usd',
-              unit_amount: args.total,
-            },
-          };
+        cart: async (parent, { id }, context) => {
+          if (context.user) {
+            const user = await User.findById({_id: context.user._id}).populate('cart');
+  
+            return user.cart.id(id);
+          }
     
-          const session = await stripe.checkout.sessions.create({
-            payment_method_types: ['card'],
-            line_items,
-            mode: 'payment',
-            success_url: `${url}/success?session_id={CHECKOUT_SESSION_ID}`,
-            cancel_url: `${url}/`,
-          });
-    
-          return { session: session.id };
+          throw AuthenticationError;
         },
-    
     },
 
     Mutation: {
@@ -71,7 +57,57 @@ const resolvers = {
             return { token, user };
           },
  
-    }
+    },
+    createCart: async (parent, { Mocktail, Cocktail }, context) => {
+      console.log(context);
+      if (context.user) {
+        const cart = await Cart.create({
+          Mocktail,
+          Cocktail
+        });
+
+        await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $addToSet: { cart: cart._id } }
+        );
+
+        return cart;
+      }
+      throw AuthenticationError;
+      ('You need to be logged in!');
+    },
+    // removeMocktail: async (parent, { cartId, mocktailId }, context) => {
+    //   if (context.user) {
+    //     return Cart.findOneAndUpdate(
+    //       { _id: cartId },
+    //       {
+    //         $pull: {
+    //           mocktails: {
+    //             _id: mocktailId,
+    //           },
+    //         },
+    //       },
+    //       { new: true }
+    //     );
+    //   }
+    //   throw AuthenticationError;
+    // },
+    // removeCocktail: async (parent, { cartId, cocktailId }, context) => {
+    //   if (context.user) {
+    //     return Cart.findOneAndUpdate(
+    //       { _id: cartId },
+    //       {
+    //         $pull: {
+    //           cocktails: {
+    //             _id: cocktailId,
+    //           },
+    //         },
+    //       },
+    //       { new: true }
+    //     );
+    //   }
+    //   throw AuthenticationError;
+    // },
 }
 
 module.exports = resolvers;
