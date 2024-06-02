@@ -1,8 +1,6 @@
 const { Schema, model } = require('mongoose');
 
 const cartSchema = new Schema({
-    // reference the user_id:
-    user: [{ type: Schema.Types.ObjectId, ref: 'User' }],
     mocktail: [{ type: Schema.Types.ObjectId, ref: 'Mocktail' }],
     cocktail: [{ type: Schema.Types.ObjectId, ref: 'Cocktail' }],
 });

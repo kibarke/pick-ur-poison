@@ -10,8 +10,8 @@ query Users {
   }
 `
 export const QUERY_USER = gql`
-query User($username: String!) {
-    user(username: $username) {
+query User {
+    user {
       _id
       username
       email
@@ -19,11 +19,11 @@ query User($username: String!) {
       cart {
         mocktail {
           mocktailName
-          moctailPrice
+          mocktailPrice
         }
         cocktail {
           cocktailName
-          coctailPrice
+          cocktailPrice
         }
       }
     }
@@ -37,7 +37,7 @@ query getMocktails {
       _id
       mocktailIngredients
       mocktailName
-      moctailPrice
+      mocktailPrice
     }
   }
 `
@@ -48,7 +48,7 @@ query Mocktail($id: ID!) {
       _id
       mocktailName
       mocktailIngredients
-      moctailPrice
+      mocktailPrice
     }
   }
 `
@@ -59,7 +59,7 @@ query getCocktails {
       _id
       cocktailName
       cocktailIngredients
-      coctailPrice
+      cocktailPrice
     }
   }
 `
@@ -69,7 +69,7 @@ query Cocktail($id: ID!) {
       _id
       cocktailName
       cocktailIngredients
-      coctailPrice
+      cocktailPrice
     }
   }
 `
