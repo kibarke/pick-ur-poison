@@ -1,9 +1,9 @@
 //  Stolen code from 21-MERN => 01-Activities => Solved => client => src => components => thoughtform
 
-
 import { useMutation, useQuery } from '@apollo/client';
 
 import { ADD_CART } from '../../utils/mutation';
+
 import { QUERY_ALL_COCKTAILS, QUERY_ALL_MOCKTAILS } from '../../utils/queries';
 
 const DrinkList = (props) => {
@@ -25,7 +25,7 @@ let drinks = []
  } else if (props.type === "mocktails") {
   drinks = mocktailData?.mocktails??[];
 
- };
+ }
 
   const handleClick = async (event) => {
     event.preventDefault();
@@ -45,7 +45,7 @@ let drinks = []
   };
 
 const HAS_ITEMS = drinks.length >0 ? true : false
-
+console.log(HAS_ITEMS, drinks);
 
  if (HAS_ITEMS) {
   return (
