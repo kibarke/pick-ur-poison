@@ -13,8 +13,6 @@ This application requires the use of various packages such as express, mongoose,
 ## Usage
 Users must signup to create an account and access menus. From there, users can browse the selection of cocktails and mocktails. Next, click on desired cocktails or mocktails and add items to the cart. Proceed to the cart for checkout. 
 
-### Link to Application
-
 ### Screenshots
 
 ### Contributions
