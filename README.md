@@ -1,6 +1,10 @@
 # pick-ur-poison
 Project 3 - A recipe social media for drinks
 
+# Live URL
+[Pick Your Poison](https://pick-ur-poison.onrender.com/)
+- `https://pick-ur-poison.onrender.com/`
+
 ## Coding Requirements
 
 ```
@@ -37,8 +41,3 @@ Uses a web manifest.
 Uses a service worker for offline functionality.
 Is installable.
 ```
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 163f87ae407de463c3ba295570f0246f02820fe5
